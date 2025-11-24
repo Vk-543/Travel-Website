@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderlust Adventures | Explore the World</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --light-color: #f8f9fa;
+        --dark-color: #343a40;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+      }
+
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: var(--primary-color) !important;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--dark-color) !important;
+        margin: 0 5px;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2021&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        color: white;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        padding: 10px 30px;
+        font-weight: 500;
+        border-radius: 30px;
+        transition: all 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        position: relative;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .destination-card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 30px;
+      }
+
+      .destination-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .destination-card img {
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .about-section {
+        background-color: var(--light-color);
+        padding: 80px 0;
+      }
+
+      .contact-section {
+        padding: 80px 0;
+      }
+
+      .contact-form {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .footer {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer h5 {
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer h5:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer a {
+        color: #bdc3c7;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer a:hover {
+        color: var(--primary-color);
+      }
+
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        margin-right: 10px;
+        transition: all 0.3s;
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #bdc3c7;
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        opacity: 0;
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--secondary-color);
+        color: white;
+      }
+
+      /* Destination Detail Modal Styles */
+      .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .modal-header {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .modal-body {
+        padding-top: 0;
+      }
+
+      .destination-detail-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .place-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .place-list li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+      }
+
+      .place-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+
+      .tab-content {
+        padding: 20px 0;
+      }
+
+      .nav-tabs .nav-link {
+        color: var(--dark-color);
+        font-weight: 500;
+        border: none;
+        border-bottom: 3px solid transparent;
+        padding: 10px 20px;
+      }
+
+      .nav-tabs .nav-link.active {
+        color: var(--primary-color);
+        background-color: transparent;
+        border-bottom: 3px solid var(--primary-color);
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Wanderlust</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#destinations">Destinations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Discover the World with Wanderlust</h1>
+          <p>
+            Explore breathtaking destinations, create unforgettable memories,
+            and experience the adventure of a lifetime with our expertly crafted
+            travel experiences.
+          </p>
+          <a href="#destinations" class="btn btn-primary btn-lg"
+            >Explore Destinations</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title">Popular Destinations</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card destination-card">
+              <img
+                src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1038&q=80"
+                class="card-img-top"
+                alt="Bali, Indonesia"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Bali, Indonesia</h5>
+                <p class="card-text">
+                  Experience the perfect blend of stunning beaches, vibrant
+                  culture, and spiritual tranquility in the Island of Gods.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#baliModal"
+                >
+                  Explore More
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card destination-card">
+              <img
+                src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                class="card-img-top"
+                alt="Santorini, Greece"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Santorini, Greece</h5>
+                <p class="card-text">
+                  Marvel at the iconic white-washed buildings, breathtaking
+                  sunsets, and crystal-clear waters of this Aegean paradise.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#santoriniModal"
+                >
+                  Explore More
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card destination-card">
+              <img
+                src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1190&q=80"
+                class="card-img-top"
+                alt="Kyoto, Japan"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Kyoto, Japan</h5>
+                <p class="card-text">
+                  Immerse yourself in ancient traditions, serene temples, and
+                  the breathtaking beauty of cherry blossoms in Japan's cultural
+                  heart.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#kyotoModal"
+                >
+                  Explore More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title">Travel Gallery</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Mountain Adventure"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">Mountain Adventure</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Beach Paradise"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">Beach Paradise</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80"
+                alt="Wilderness Exploration"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">Wilderness Exploration</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1335&q=80"
+                alt="City Lights"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">City Lights</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80"
+                alt="Desert Safari"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">Desert Safari</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                alt="Northern Lights"
+              />
+              <div class="gallery-overlay">
+                <h5 class="text-white">Northern Lights</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title text-start">About Wanderlust</h2>
+            <p>
+              Founded in 2010, Wanderlust Adventures has been helping travelers
+              explore the world with confidence and excitement. Our mission is
+              to create unforgettable travel experiences that connect people
+              with diverse cultures, breathtaking landscapes, and authentic
+              local experiences.
+            </p>
+            <p>
+              With a team of passionate travel experts and local guides, we
+              carefully craft each itinerary to ensure our travelers get the
+              most out of their journey. We believe that travel has the power to
+              transform perspectives and create lifelong memories.
+            </p>
+            <p>
+              Our commitment to sustainable tourism means we work with local
+              communities to ensure our travels have a positive impact on the
+              destinations we visit.
+            </p>
+            <a href="#contact" class="btn btn-primary mt-3">Get in Touch</a>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+              alt="Our Team"
+              class="img-fluid rounded shadow"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title">Contact Us</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="contact-form">
+              <form
+                id="contact-form"
+                action="https://formspree.io/f/manzqldn"
+                method="POST"
+              >
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      name="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      name="lastName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="subject" class="form-label">Subject</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="subject"
+                    name="subject"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Send Message
+                </button>
+                <div id="form-status" class="mt-3"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <h5>Wanderlust Adventures</h5>
+            <p>
+              Creating unforgettable travel experiences since 2010. Explore the
+              world with confidence and make memories that last a lifetime.
+            </p>
+            <div class="social-icons mt-4">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#destinations">Destinations</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Popular Destinations</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#baliModal"
+                  >Bali, Indonesia</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#santoriniModal"
+                  >Santorini, Greece</a
+                >
+              </li>
+              <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#kyotoModal"
+                  >Kyoto, Japan</a
+                >
+              </li>
+              <li><a href="#">Paris, France</a></li>
+              <li><a href="#">New York, USA</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Contact Info</h5>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-map-marker-alt me-2"></i> 123 Travel Street,
+                Adventure City
+              </li>
+              <li><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+              <li><i class="fas fa-envelope me-2"></i> info@wanderlust.com</li>
+              <li><i class="fas fa-clock me-2"></i> Mon - Fri: 9AM - 6PM</li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2023 Wanderlust Adventures. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Destination Detail Modals -->
+    <!-- Bali Modal -->
+    <div
+      class="modal fade"
+      id="baliModal"
+      tabindex="-1"
+      aria-labelledby="baliModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="baliModalLabel">Bali, Indonesia</h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1038&q=80"
+              class="destination-detail-img"
+              alt="Bali, Indonesia"
+            />
+
+            <ul class="nav nav-tabs" id="baliTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="overview-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#bali-overview"
+                  type="button"
+                  role="tab"
+                >
+                  Overview
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="attractions-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#bali-attractions"
+                  type="button"
+                  role="tab"
+                >
+                  Top Attractions
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="markets-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#bali-markets"
+                  type="button"
+                  role="tab"
+                >
+                  Markets & Shopping
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="baliTabsContent">
+              <div
+                class="tab-pane fade show active"
+                id="bali-overview"
+                role="tabpanel"
+              >
+                <p>
+                  Bali, known as the Island of the Gods, offers a perfect blend
+                  of natural beauty, vibrant culture, and spiritual tranquility.
+                  From stunning beaches to lush rice terraces and ancient
+                  temples, Bali captivates every visitor with its unique charm.
+                </p>
+                <p>
+                  The island is famous for its arts and crafts, traditional
+                  dance performances, and wellness retreats. Whether you're
+                  seeking adventure, relaxation, or cultural immersion, Bali has
+                  something for everyone.
+                </p>
+                <p>
+                  <strong>Best Time to Visit:</strong> April to October (dry
+                  season)
+                </p>
+                <p><strong>Currency:</strong> Indonesian Rupiah (IDR)</p>
+              </div>
+              <div class="tab-pane fade" id="bali-attractions" role="tabpanel">
+                <h5>Must-Visit Places in Bali:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Uluwatu Temple:</strong> A stunning sea temple
+                    perched on a cliff with traditional Kecak dance performances
+                    at sunset
+                  </li>
+                  <li>
+                    <strong>Tegallalang Rice Terraces:</strong> Beautifully
+                    sculpted rice paddies offering breathtaking views
+                  </li>
+                  <li>
+                    <strong>Mount Batur:</strong> An active volcano perfect for
+                    sunrise trekking with panoramic views
+                  </li>
+                  <li>
+                    <strong>Ubud Monkey Forest:</strong> A sacred sanctuary home
+                    to hundreds of long-tailed macaques
+                  </li>
+                  <li>
+                    <strong>Tanah Lot Temple:</strong> A picturesque sea temple
+                    that appears to float on the water during high tide
+                  </li>
+                  <li>
+                    <strong>Seminyak Beach:</strong> Famous for its upscale
+                    resorts, beach clubs, and spectacular sunsets
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="bali-markets" role="tabpanel">
+                <h5>Shopping & Markets in Bali:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Ubud Art Market:</strong> Traditional market
+                    offering handicrafts, souvenirs, and local artwork
+                  </li>
+                  <li>
+                    <strong>Seminyak Square:</strong> Upscale shopping area with
+                    boutiques, galleries, and designer stores
+                  </li>
+                  <li>
+                    <strong>Sukawati Art Market:</strong> Wholesale market for
+                    traditional Balinese crafts at affordable prices
+                  </li>
+                  <li>
+                    <strong>Krisna Oleh-Oleh:</strong> Popular chain store for
+                    Balinese souvenirs and local products
+                  </li>
+                  <li>
+                    <strong>Guwang Market:</strong> Authentic local market known
+                    for its fresh produce and traditional snacks
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Santorini Modal -->
+    <div
+      class="modal fade"
+      id="santoriniModal"
+      tabindex="-1"
+      aria-labelledby="santoriniModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="santoriniModalLabel">
+              Santorini, Greece
+            </h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              class="destination-detail-img"
+              alt="Santorini, Greece"
+            />
+
+            <ul class="nav nav-tabs" id="santoriniTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="santorini-overview-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#santorini-overview"
+                  type="button"
+                  role="tab"
+                >
+                  Overview
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="santorini-attractions-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#santorini-attractions"
+                  type="button"
+                  role="tab"
+                >
+                  Top Attractions
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="santorini-markets-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#santorini-markets"
+                  type="button"
+                  role="tab"
+                >
+                  Markets & Shopping
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="santoriniTabsContent">
+              <div
+                class="tab-pane fade show active"
+                id="santorini-overview"
+                role="tabpanel"
+              >
+                <p>
+                  Santorini is a breathtaking Greek island in the Aegean Sea,
+                  famous for its dramatic views, stunning sunsets, white-washed
+                  buildings, and beautiful beaches. Formed by a volcanic
+                  eruption, the island's unique landscape offers some of the
+                  most photogenic scenery in the world.
+                </p>
+                <p>
+                  The island is renowned for its wine production, delicious
+                  Mediterranean cuisine, and romantic atmosphere that makes it a
+                  popular destination for honeymooners and couples.
+                </p>
+                <p><strong>Best Time to Visit:</strong> May to October</p>
+                <p><strong>Currency:</strong> Euro (€)</p>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="santorini-attractions"
+                role="tabpanel"
+              >
+                <h5>Must-Visit Places in Santorini:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Oia Village:</strong> Famous for its blue-domed
+                    churches, white buildings, and spectacular sunsets
+                  </li>
+                  <li>
+                    <strong>Fira:</strong> The vibrant capital with stunning
+                    caldera views, museums, and shopping
+                  </li>
+                  <li>
+                    <strong>Red Beach:</strong> Unique beach with red volcanic
+                    sand and towering crimson cliffs
+                  </li>
+                  <li>
+                    <strong>Ancient Thera:</strong> Archaeological site with
+                    ruins from Hellenistic, Roman, and Byzantine periods
+                  </li>
+                  <li>
+                    <strong>Akrotiri Archaeological Site:</strong> Minoan Bronze
+                    Age settlement preserved in volcanic ash
+                  </li>
+                  <li>
+                    <strong>Santorini Volcano:</strong> Take a boat tour to
+                    explore the active volcanic islands in the caldera
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="santorini-markets" role="tabpanel">
+                <h5>Shopping & Markets in Santorini:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Fira Market Street:</strong> Main shopping area with
+                    jewelry, souvenirs, and local products
+                  </li>
+                  <li>
+                    <strong>Oia Art Gallery:</strong> Features works by local
+                    artists inspired by Santorini's beauty
+                  </li>
+                  <li>
+                    <strong>Wine Tours:</strong> Visit local wineries to sample
+                    Santorini's famous Assyrtiko wine
+                  </li>
+                  <li>
+                    <strong>Pyrgos Village Shops:</strong> Traditional shops
+                    offering local crafts and products
+                  </li>
+                  <li>
+                    <strong>Perissa Beach Market:</strong> Beachside stalls with
+                    souvenirs, clothing, and accessories
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kyoto Modal -->
+    <div
+      class="modal fade"
+      id="kyotoModal"
+      tabindex="-1"
+      aria-labelledby="kyotoModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="kyotoModalLabel">Kyoto, Japan</h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1190&q=80"
+              class="destination-detail-img"
+              alt="Kyoto, Japan"
+            />
+
+            <ul class="nav nav-tabs" id="kyotoTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="kyoto-overview-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#kyoto-overview"
+                  type="button"
+                  role="tab"
+                >
+                  Overview
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="kyoto-attractions-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#kyoto-attractions"
+                  type="button"
+                  role="tab"
+                >
+                  Top Attractions
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="kyoto-markets-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#kyoto-markets"
+                  type="button"
+                  role="tab"
+                >
+                  Markets & Shopping
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="kyotoTabsContent">
+              <div
+                class="tab-pane fade show active"
+                id="kyoto-overview"
+                role="tabpanel"
+              >
+                <p>
+                  Kyoto, Japan's former imperial capital, is a city where
+                  ancient traditions meet modern life. With over 2,000 temples
+                  and shrines, beautiful gardens, and traditional wooden houses,
+                  Kyoto offers a glimpse into Japan's rich cultural heritage.
+                </p>
+                <p>
+                  The city is particularly famous for its cherry blossoms in
+                  spring and vibrant autumn foliage. Kyoto is also known for its
+                  geisha culture, tea ceremonies, and exquisite kaiseki cuisine.
+                </p>
+                <p>
+                  <strong>Best Time to Visit:</strong> March to May (cherry
+                  blossoms) or October to November (autumn colors)
+                </p>
+                <p><strong>Currency:</strong> Japanese Yen (¥)</p>
+              </div>
+              <div class="tab-pane fade" id="kyoto-attractions" role="tabpanel">
+                <h5>Must-Visit Places in Kyoto:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Fushimi Inari Shrine:</strong> Famous for its
+                    thousands of vermilion torii gates leading up Mount Inari
+                  </li>
+                  <li>
+                    <strong>Kinkaku-ji (Golden Pavilion):</strong> Zen temple
+                    covered in gold leaf, surrounded by beautiful gardens
+                  </li>
+                  <li>
+                    <strong>Arashiyama Bamboo Grove:</strong> Magical pathway
+                    through towering bamboo stalks
+                  </li>
+                  <li>
+                    <strong>Kiyomizu-dera Temple:</strong> Historic temple with
+                    a wooden stage offering panoramic city views
+                  </li>
+                  <li>
+                    <strong>Gion District:</strong> Traditional entertainment
+                    area where you might spot geisha or maiko
+                  </li>
+                  <li>
+                    <strong>Philosopher's Path:</strong> Picturesque stone path
+                    along a canal, especially beautiful during cherry blossom
+                    season
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="kyoto-markets" role="tabpanel">
+                <h5>Shopping & Markets in Kyoto:</h5>
+                <ul class="place-list">
+                  <li>
+                    <strong>Nishiki Market:</strong> Kyoto's kitchen with over
+                    100 shops selling local food and specialties
+                  </li>
+                  <li>
+                    <strong>Teramachi and Shinkyogoku Shopping Arcades:</strong>
+                    Covered shopping streets with variety of stores
+                  </li>
+                  <li>
+                    <strong>Kyoto Handicraft Center:</strong> One-stop shop for
+                    traditional Japanese crafts and souvenirs
+                  </li>
+                  <li>
+                    <strong>Pontocho Alley:</strong> Historic entertainment
+                    district with restaurants and traditional shops
+                  </li>
+                  <li>
+                    <strong>To-ji Temple Market:</strong> Monthly flea market
+                    with antiques, crafts, and local products
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Back to top button
+      const backToTopButton = document.querySelector(".back-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+      });
+
+      backToTopButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Navbar background on scroll
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) {
+          document.querySelector(".navbar").style.backgroundColor =
+            "rgba(255, 255, 255, 0.98)";
+        } else {
+          document.querySelector(".navbar").style.backgroundColor =
+            "rgba(255, 255, 255, 0.95)";
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Form submission handling
+      const form = document.getElementById("contact-form");
+      const formStatus = document.getElementById("form-status");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              formStatus.innerHTML =
+                '<div class="alert alert-success">Thank you for your message! We will get back to you soon.</div>';
+              form.reset();
+            } else {
+              formStatus.innerHTML =
+                '<div class="alert alert-danger">Oops! There was a problem submitting your form. Please try again.</div>';
+            }
+          })
+          .catch((error) => {
+            formStatus.innerHTML =
+              '<div class="alert alert-danger">Oops! There was a problem submitting your form. Please try again.</div>';
+          });
+      });
+    </script>
+  </body>
+</html>
